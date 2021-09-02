@@ -47,6 +47,5 @@ ipcMain.handle('getStore', (event, arg) => {
 
 ipcMain.handle('setStore', (event, key, value) => {
   store.set(key, value)
-  console.log(store)
   return store.get(key)
 });
