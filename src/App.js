@@ -5,28 +5,30 @@ import {
 } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 import './App.css';
+import ScopeCheckboxes from './components/ScopeCheckboxes'
 
 export default function App() {
-  const [ data, updateData ] = useState({})
+  const [ data, setData ] = useState({})
+
   useEffect( () => {
-    async function setData() {
+    async function getStore() {
       const res = await window.api.getStore('data')
       if (res) {
-        updateData(res)
+        setData(res)
       }
     }
-    setData()
+    getStore()
   }, [])
+
   useEffect( () => {
-    async function setData() {
+    async function setStore() {
       window.api.setStore('data', data);
-      console.log('set to store')
     }
-    setData();
+    setStore();
   });
 
   const updateField = (({ event, value }) => {
-    updateData({ ...data, [event.target.id]: value })
+    setData({ ...data, [event.target.id]: value })
   })
 
   return (
