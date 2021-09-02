@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 export default function App() {
-  const [ data, updateData ] = useState('nothing yet...')
+  const [ data, updateData ] = useState('initial data')
   useEffect( () => {
     async function getData() {
-      const res = await window.api.doAction('data from React App.js')
+      window.api.setStore('data', { test: 'new data' })
+      const res = await window.api.getStore('data.test')
+      console.log(res)
       updateData(res)
-      console.log(data)
     }
     getData()
   });

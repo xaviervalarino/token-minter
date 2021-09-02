@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
+const Store = require('electron-store');
 
 let mainWindow;
 async function createWindow() {
@@ -33,6 +34,19 @@ app.on('activate', () => {
   if ( BrowserWindow.getAllWIndows().length === 0 ) { createWindow(); }
 })
 
-ipcMain.handle('an-action', async (event, key) => {
-  return 'returned from inside electron.js file'
+const store = new Store();
+store.set({
+  data: {
+    test: 'Initial data'
+  }
+});
+
+ipcMain.handle('getStore', (event, arg) => {
+  return store.get(arg)
+});
+
+ipcMain.handle('setStore', (event, key, value) => {
+  store.set(key, value)
+  console.log(store)
+  return store.get(key)
 });

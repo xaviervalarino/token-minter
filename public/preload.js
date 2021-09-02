@@ -1,8 +1,12 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld( 'api', {
-  doAction: async (data) => {
-    console.log('data from contextBridge:', data)
-    return await ipcRenderer.invoke('an-action', data);
+  getStore: (key) => {
+    console.log('key from getStore:', key)
+    return ipcRenderer.invoke('getStore', key);
+  },
+  setStore: (...args) => {
+    const [ key, value ] = args;
+    return ipcRenderer.invoke('setStore', key, value);
   }
 })
