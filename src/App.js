@@ -47,6 +47,7 @@ export default function App() {
         value={ data['redirectUrl'] || '' }
         onChange={ updateField }
       />
+      <ScopeCheckboxes data={data} setData={setData} />
       <Box>
         { JSON.stringify(data) }
       </Box>
