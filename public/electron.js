@@ -35,11 +35,7 @@ app.on('activate', () => {
 })
 
 const store = new Store();
-store.set({
-  data: {
-    test: 'Initial data'
-  }
-});
+store.set({ data: {} });
 
 ipcMain.handle('getStore', (event, arg) => {
   return store.get(arg)
