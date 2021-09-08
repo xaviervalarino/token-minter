@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 const Store = require('electron-store');
+const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
 let mainWindow;
 async function createWindow() {
@@ -22,6 +23,7 @@ async function createWindow() {
   } else {
     appURL = 'http://localhost:3000';
     mainWindow.webContents.openDevTools({ mode: 'detach' })
+    installExtension(REACT_DEVELOPER_TOOLS);
   }
   mainWindow.loadURL(appURL)
 }
