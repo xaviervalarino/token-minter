@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   Box,
-  Button,
-  ButtonGroup,
   Flex,
   Heading,
   Text
@@ -11,7 +8,6 @@ import {
 
 export default function ReceiveAccessCode() {
   const [ data, setData ] = useState({})
-  const history = useHistory();
 
   useEffect( () => {
     async function getStore() {
@@ -44,17 +40,6 @@ export default function ReceiveAccessCode() {
           </pre>
         </Text>
       </Box>
-      <ButtonGroup>
-        <Button
-          text='Back'
-          onClick={ () => history.push('/start-oauth-flow') }
-        />
-        <Button
-          text='Next'
-          color='red'
-          onClick={ () => history.push('/exchange-for-access-token') }
-        />
-      </ButtonGroup>
     </Flex>
   );
 }

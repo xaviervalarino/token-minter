@@ -1,7 +1,10 @@
 import React, { createContext } from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
-import { Box } from 'gestalt';
+import { HashRouter, Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
+
+import PageLayout from './components/PageLayout';
+
+// Pages
 import Home from './pages/Home';
 import StartOAuthFlow from './pages/StartOAuthFlow';
 import ReceiveAccessCode from './pages/ReceiveAccessCode';
@@ -26,22 +29,20 @@ export default function App(props) {
       component: ExchangeForAccessToken
     }
   ];
-  const builtRoutes = routes.map( ({ path, component: Component }, i) => {
+  const builtRoutes = routes.map( ({ path, component }, i) => {
     const exact = !i ? true: false;
     return <Route
       key={i}
       exact={exact}
       path={path}
-      render={ (props) => <Component routes={routes} {...props} /> }
+      render={ (props) => <PageLayout page={component} routes={routes}/> }
     />
   });
   return (
-    <Box padding={10}>
-        <HashRouter>
-          <Switch>
-            { builtRoutes }
-          </Switch>
-        </HashRouter>
-    </Box>
+    <HashRouter>
+      <Switch>
+        { builtRoutes }
+      </Switch>
+    </HashRouter>
   );
 }

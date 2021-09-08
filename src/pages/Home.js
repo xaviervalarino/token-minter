@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   Box,
-  Button,
   Flex,
   Heading,
   Text
 } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 
+
 export default function Home() {
   const [ data, setData ] = useState({})
-  const history = useHistory();
+
 
   useEffect( () => {
     async function getStore() {
@@ -45,11 +44,6 @@ export default function Home() {
           </pre>
         </Text>
       </Box>
-      <Button
-        text='Start'
-        color='red'
-        onClick={ () => history.push('/start-oauth-flow') }
-      />
     </Flex>
   );
 }

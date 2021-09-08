@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   Box,
-  Button,
-  ButtonGroup,
   Flex,
   Heading,
   Text,
@@ -12,7 +9,6 @@ import {
 import ScopeCheckboxes from '../components/ScopeCheckboxes'
 
 export default function StartOAuthFlow() {
-  const history = useHistory();
   const [ data, setData ] = useState({});
 
   useEffect(() => {
@@ -61,17 +57,6 @@ export default function StartOAuthFlow() {
           </pre>
         </Text>
       </Box>
-      <ButtonGroup>
-        <Button
-          text='Back'
-          onClick={ () => history.push('/')  }
-        />
-        <Button
-          text='Next'
-          color='red'
-          onClick={ () => history.push('/receive-access-code')  }
-        />
-      </ButtonGroup>
     </Flex>
   );
 }

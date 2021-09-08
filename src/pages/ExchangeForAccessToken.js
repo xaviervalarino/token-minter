@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   Box,
-  Button,
   Flex,
   Heading,
   Text
 } from 'gestalt';
 
 export default function ExchangeForAccessToken() {
-  const history = useHistory();
   const [ data, setData ] = useState({});
 
   useEffect(() => {
@@ -39,10 +36,6 @@ export default function ExchangeForAccessToken() {
           </pre>
         </Text>
       </Box>
-        <Button
-          text='Back'
-          onClick={ () => history.push('/receive-access-code') }
-        />
     </Flex>
   )
 }
