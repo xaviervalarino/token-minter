@@ -1,56 +1,23 @@
-import { useState, useEffect } from 'react';
-import {
-  Box,
-  TextField
-} from 'gestalt';
-import 'gestalt/dist/gestalt.css';
+import React from 'react';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import { Box } from 'gestalt';
 import './App.css';
-import ScopeCheckboxes from './components/ScopeCheckboxes'
+import Home from './pages/Home';
+import StartOAuthFlow from './pages/StartOAuthFlow';
+import ReceiveAccessCode from './pages/ReceiveAccessCode';
+import ExchangeForAccessToken from './pages/ExchangeForAccessToken';
 
-export default function App() {
-  const [ data, setData ] = useState({})
-
-  useEffect( () => {
-    async function getStore() {
-      const res = await window.api.getStore('data')
-      if (res) {
-        setData(res)
-      }
-    }
-    getStore()
-  }, [])
-
-  useEffect( () => {
-    async function setStore() {
-      window.api.setStore('data', data);
-    }
-    setStore();
-  });
-
-  const updateField = (({ event, value }) => {
-    setData({ ...data, [event.target.id]: value })
-  })
-
+export default function App(props) {
   return (
-    <div className="App">
-      <TextField
-        label='App Id'
-        name='App Id'
-        id='appId'
-        value={ data['appId'] || '' }
-        onChange={ updateField }
-      />
-      <TextField
-        label='Redirect URL '
-        name='Redirect URL'
-        id='redirectUrl'
-        value={ data['redirectUrl'] || '' }
-        onChange={ updateField }
-      />
-      <ScopeCheckboxes data={data} setData={setData} />
-      <Box>
-        { JSON.stringify(data) }
-      </Box>
-    </div>
+    <Box padding={10}>
+        <HashRouter>
+          <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/start-oauth-flow' component={StartOAuthFlow} />
+              <Route path='/receive-access-code' component={ReceiveAccessCode} />
+              <Route path='/exchange-for-access-token' component={ExchangeForAccessToken} />
+          </Switch>
+        </HashRouter>
+    </Box>
   );
 }
