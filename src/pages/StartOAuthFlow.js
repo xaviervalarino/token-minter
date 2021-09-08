@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useContext} from 'react';
+import { DataContext } from '../components/DataContext'
 import {
   Box,
   Flex,
@@ -9,24 +10,7 @@ import {
 import ScopeCheckboxes from '../components/ScopeCheckboxes'
 
 export default function StartOAuthFlow() {
-  const [ data, setData ] = useState({});
-
-  useEffect(() => {
-    async function getStore() {
-      const res = await window.api.getStore('data')
-      if (res) {
-        setData(res);
-      }
-    }
-    getStore();
-  }, [])
-
-  useEffect(() => {
-    async function setStore() {
-      window.api.setStore('data', data);
-    }
-    setStore();
-  });
+  const [ data, setData ] = useContext(DataContext);
 
   const updateField = (({ event, value }) => {
     setData({ ...data, [event.target.id]: value })

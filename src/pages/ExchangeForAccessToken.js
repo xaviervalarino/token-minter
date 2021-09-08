@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { DataContext } from '../components/DataContext';
 import {
   Box,
   Flex,
@@ -7,24 +8,7 @@ import {
 } from 'gestalt';
 
 export default function ExchangeForAccessToken() {
-  const [ data, setData ] = useState({});
-
-  useEffect(() => {
-    async function getStore() {
-      const res = await window.api.getStore('data')
-      if (res) {
-        setData(res);
-      }
-    }
-    getStore();
-  }, [])
-
-  useEffect(() => {
-    async function setStore() {
-      window.api.setStore('data', data);
-    }
-    setStore();
-  });
+  const [ data ] = useContext(DataContext);
 
   return (
     <Flex direction='column' gap={6}>

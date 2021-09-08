@@ -1,5 +1,6 @@
 import { Box } from 'gestalt';
 import BottomButtonNav from './BottomButtonNav';
+import { DataProvider } from './DataContext'
 
 export default function PageLayout({ page: Page, routes }) {
   return (
@@ -12,7 +13,9 @@ export default function PageLayout({ page: Page, routes }) {
     >
       <Box flex='grow' overflow='auto'>
         <Box padding={10}>
-          <Page />
+          <DataProvider>
+            <Page />
+          </DataProvider>
         </Box>
       </Box>
       <BottomButtonNav routes={routes} />
