@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { HashRouter, Route, Switch, useHistory } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import PageLayout from './components/PageLayout';

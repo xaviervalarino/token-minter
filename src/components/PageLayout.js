@@ -1,10 +1,7 @@
-import { useHistory } from 'react-router-dom';
 import { Box } from 'gestalt';
 import BottomButtonNav from './BottomButtonNav';
 
 export default function PageLayout({ page: Page, routes }) {
-  const history = useHistory();
-  console.log( Page, routes)
   return (
     <Box
       position='absolute'
@@ -18,11 +15,7 @@ export default function PageLayout({ page: Page, routes }) {
           <Page />
         </Box>
       </Box>
-      <BottomButtonNav
-        routes={routes}
-        pathname={history.location.pathname}
-        onClickHandler={history.push}
-      />
+      <BottomButtonNav routes={routes} />
     </Box>
   )
 }

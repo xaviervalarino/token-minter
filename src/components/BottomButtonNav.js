@@ -1,29 +1,32 @@
+import { useHistory } from 'react-router-dom';
 import {
   Box,
   Button,
   Flex
 } from 'gestalt';
 
-export default function ButtonNav ({ routes, pathname, onClickHandler }) {
+export default function ButtonNav ({ routes }) {
+  const history = useHistory();
+  const currentPath = history.location.pathname;
   const buttons = [];
   routes.forEach( ({path}, i) => {
-    if ( path === pathname && i > 0 ) {
+    if ( path === currentPath && i > 0 ) {
       buttons.push(
         <Flex key={i-1}>
           <Button
             text='Back'
-            onClick={ () => onClickHandler(routes[i-1].path) }
+            onClick={ () => history.push(routes[i-1].path) }
           />
         </Flex>
       )
     }
-    if ( path === pathname && i < routes.length - 1 ) {
+    if ( path === currentPath && i < routes.length - 1 ) {
       buttons.push(
         <Flex key={i+1} flex='grow' justifyContent='end'>
         <Button
           color='red'
           text='Next'
-          onClick={ () => onClickHandler(routes[i+1].path) }
+          onClick={ () => history.push(routes[i+1].path) }
         />
         </Flex>
       )
