@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
-const Store = require('electron-store');
+const dataStore = require('./dataStore');
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
 let mainWindow;
@@ -36,14 +36,4 @@ app.on('activate', () => {
   if ( BrowserWindow.getAllWIndows().length === 0 ) { createWindow(); }
 })
 
-const store = new Store();
-store.set({ data: {} });
-
-ipcMain.handle('getStore', (event, arg) => {
-  return store.get(arg)
-});
-
-ipcMain.handle('setStore', (event, key, value) => {
-  store.set(key, value)
-  return store.get(key)
-});
+dataStore(ipcMain)
