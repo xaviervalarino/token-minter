@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import {
   Checkbox,
+  Box,
   Fieldset,
   Flex
 } from 'gestalt';
@@ -54,40 +55,40 @@ export default function ScopeCheckboxes({ data, setData }) {
       setData({ ...data, scopes: [] })
     }
   })
-  const createCheckboxes = data => {
-    return scopes.map(({ name, description }, index) => {
 
-      const onChange = ({event, checked}) => {
-        return (() => {
-          const name = event.target.name
-          const updatedScopes = data.scopes;
-          const index = data.scopes.indexOf(name)
-          if (!checked) {
-            updatedScopes.splice(index, 1)
-          } else {
-            updatedScopes.push(name)
-          }
-          setData({ ...data, scopes: updatedScopes })
-        })();
-      };
-      return (
-        <Flex.Item key={index} flex='shrink'>
-          <Checkbox
-            name={name}
-            id={name}
-            label={name}
-            subtext={description}
-            checked={ data.scopes && data.scopes.includes(name) }
-            onChange={onChange}
-          />
-        </Flex.Item>
-      )
-    })
-  }
+  const onChange = ({event, checked}) => {
+    return (() => {
+      const name = event.target.name
+      const updatedScopes = data.scopes;
+      const index = data.scopes.indexOf(name)
+      if (!checked) {
+        updatedScopes.splice(index, 1)
+      } else {
+        updatedScopes.push(name)
+      }
+      setData({ ...data, scopes: updatedScopes })
+    })();
+  };
+
+  const createCheckboxes = scopes.map( ({ name, description }, index) => {
+    return (
+      <Box key={index} width='40vw' marginBottom={6}>
+        <Checkbox
+          name={name}
+          id={name}
+          label={name}
+          subtext={description}
+          checked={ data.scopes && data.scopes.includes(name) }
+          onChange={onChange}
+        />
+      </Box>
+    )
+  });
+
   return (
     <Fieldset legend='Your apps scopes (select at least one)'>
-      <Flex gap={6}  wrap={true} direction='column'>
-        { createCheckboxes(data) }
+      <Flex gap={6} wrap>
+        { createCheckboxes }
       </Flex>
     </Fieldset>
   )
