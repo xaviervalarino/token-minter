@@ -8,7 +8,8 @@ import {
   IconButton,
   Layer,
   Modal,
-  Text
+  Text,
+  Tooltip
 } from "gestalt";
 import CodeBlock from './CodeBlock';
 
@@ -40,13 +41,15 @@ export default function DataDisplay({ data }) {
 
   return (
     <>
-      <IconButton
-        accessibilityLabel='Display App data'
-        bgColor='darkGray'
-        icon='cog'
-        size='sm'
-        onClick={() =>  setShowModal(true) }
-      />
+      <Tooltip text='See data'>
+        <IconButton
+          accessibilityLabel='Display app data'
+          bgColor='darkGray'
+          icon='cog'
+          size='sm'
+          onClick={() =>  setShowModal(true) }
+        />
+      </Tooltip>
       { showModal && (
         <Layer zIndex={zIndex}>
           <DataDisplayModal
