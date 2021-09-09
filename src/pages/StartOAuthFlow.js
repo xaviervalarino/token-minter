@@ -1,9 +1,7 @@
 import { useContext} from 'react';
 import {
-  Box,
   Flex,
   Heading,
-  Text,
   TextField,
 } from 'gestalt';
 import { DataContext } from '../components/DataContext'
@@ -38,13 +36,6 @@ export default function StartOAuthFlow() {
         onChange={ updateField }
       />
       <ScopeCheckboxes data={data} setData={setData} />
-      <Box padding={3} color='darkGray'>
-        <Text color='white'>
-          <pre>
-            { JSON.stringify(data, null, '\r  ') }
-          </pre>
-        </Text>
-      </Box>
     </Flex>
   );
 }

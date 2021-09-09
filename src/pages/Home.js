@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import {
-  Box,
   Flex,
   Heading,
   Text
@@ -20,13 +19,6 @@ export default function Home(props) {
         <DataDisplay data={data}/>
       </Flex>
       <Text>Instructions</Text>
-      <Box padding={3} color='darkGray'>
-        <Text color='white'>
-          <pre>
-          { JSON.stringify(data, null, '\r  ') }
-          </pre>
-        </Text>
-      </Box>
     </Flex>
   );
 }

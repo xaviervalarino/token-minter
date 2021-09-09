@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import {
-  Box,
+  Button,
   Flex,
   Heading,
   Text
@@ -18,13 +18,15 @@ export default function ReceiveAccessCode() {
         <Heading> Recieve access code</Heading>
         <DataDisplay data={data}/>
       </Flex>
-      <Box padding={3} color='darkGray'>
-        <Text color='white'>
-          <pre>
-          { JSON.stringify(data, null, '\r  ') }
-          </pre>
-        </Text>
-      </Box>
+      <Text>This URL is your request for an access code</Text>
+      <CodeBlock rounding={2} color='darkGray'>
+            Not enough data, yet...
+      </CodeBlock>
+      <Flex justifyContent='end'>
+        <Button
+          text='Request access code'
+        />
+      </Flex>
     </Flex>
   );
 }

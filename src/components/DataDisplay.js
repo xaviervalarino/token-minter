@@ -10,6 +10,8 @@ import {
   Modal,
   Text
 } from "gestalt";
+import CodeBlock from './CodeBlock';
+
 export default function DataDisplay({ data }) {
   const [ showModal, setShowModal ] = useState(false);
 
@@ -18,21 +20,17 @@ export default function DataDisplay({ data }) {
         <Modal
           accessibilityModalLabel='Current app data'
           heading='Current app data'
+          size='sm'
           onDismiss={ onDismiss }
           footer={
             <Flex justifyContent='end' gap={2}>
               <Button color='red' text='Got it' />
             </Flex>
           }
-          size='sm'
         >
-          <Box padding={4} color='lightGray'>
-            <Text color='darkGray'>
-              <pre style={{ fontFamily: 'SF Mono' }}>
-                { JSON.stringify(data, null, '\r  ') }
-              </pre>
-            </Text>
-          </Box>
+          <CodeBlock>
+            { JSON.stringify(data, null, '\r  ') }
+          </CodeBlock>
         </Modal>
     )
   }
