@@ -7,5 +7,8 @@ contextBridge.exposeInMainWorld( 'api', {
   setStore: (...args) => {
     const [ key, value ] = args;
     return ipcRenderer.invoke('setStore', key, value);
+  },
+  openModal: (url) => {
+    return ipcRenderer.invoke('openModal', url);
   }
 })

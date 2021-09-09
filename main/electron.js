@@ -4,6 +4,7 @@ const url = require('url');
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
 const dataStore = require('./dataStore');
+const handleModal = require('./handleModalWindow');
 
 let mainWindow;
 async function createWindow() {
@@ -29,6 +30,17 @@ async function createWindow() {
   mainWindow.loadURL(appURL)
 }
 
+async function createModalWindow(url) {
+  const modal = new BrowserWindow({
+    parent: mainWindow,
+    modal: true,
+    show: false
+  })
+  modal.loadURL(url)
+  await modal.once('ready-to-show', () => modal.show())
+  return modal;
+}
+
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {
   if ( process.platform !== 'darwin' ) { app.quit() }
@@ -38,3 +50,4 @@ app.on('activate', () => {
 })
 
 dataStore()
+handleModal(createModalWindow)
