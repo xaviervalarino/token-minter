@@ -1,9 +1,10 @@
+const { ipcMain } = require('electron');
 const Store = require('electron-store');
 const store = new Store();
 
-module.exports = function dataStore(ipcMain) {
+module.exports = function dataStore() {
   store.set({ data: {} });
-  
+
   ipcMain.handle('getStore', (event, arg) => {
     return store.get(arg)
   });
