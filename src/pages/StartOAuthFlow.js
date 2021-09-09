@@ -1,5 +1,4 @@
 import { useContext} from 'react';
-import { DataContext } from '../components/DataContext'
 import {
   Box,
   Flex,
@@ -7,7 +6,9 @@ import {
   Text,
   TextField,
 } from 'gestalt';
-import ScopeCheckboxes from '../components/ScopeCheckboxes'
+import { DataContext } from '../components/DataContext'
+import DataDisplay from '../components/DataDisplay';
+import ScopeCheckboxes from '../components/ScopeCheckboxes';
 
 export default function StartOAuthFlow() {
   const [ data, setData ] = useContext(DataContext);
@@ -18,7 +19,10 @@ export default function StartOAuthFlow() {
 
   return (
     <Flex direction='column' gap={6}>
-      <Heading>Start OAuth flow</Heading>
+      <Flex justifyContent='between'>
+        <Heading>Start OAuth flow</Heading>
+        <DataDisplay data={data}/>
+      </Flex>
       <TextField
         label='App Id'
         name='App Id'

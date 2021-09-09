@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { DataContext } from '../components/DataContext';
 import {
   Box,
   Flex,
@@ -7,6 +6,8 @@ import {
   Text
 } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
+import { DataContext } from '../components/DataContext';
+import  DataDisplay  from '../components/DataDisplay';
 
 
 export default function Home(props) {
@@ -14,7 +15,10 @@ export default function Home(props) {
 
   return (
     <Flex direction='column' gap={6}>
-     <Heading>Home</Heading>
+      <Flex justifyContent='between'>
+        <Heading>Home</Heading>
+        <DataDisplay data={data}/>
+      </Flex>
       <Text>Instructions</Text>
       <Box padding={3} color='darkGray'>
         <Text color='white'>
