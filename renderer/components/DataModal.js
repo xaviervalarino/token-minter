@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-  Box,
   Button,
   CompositeZIndex,
   FixedZIndex,
@@ -8,7 +7,6 @@ import {
   IconButton,
   Layer,
   Modal,
-  Text,
   Tooltip
 } from "gestalt";
 import CodeBlock from './CodeBlock';
