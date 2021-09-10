@@ -46,7 +46,9 @@ app.on('window-all-closed', () => {
   if ( process.platform !== 'darwin' ) { app.quit() }
 })
 app.on('activate', () => {
-  if ( BrowserWindow.getAllWIndows().length === 0 ) { createWindow(); }
+  if ( BrowserWindow.getAllWindows().length === 0 ) {
+    createWindow();
+  }
 })
 
 dataStore()
