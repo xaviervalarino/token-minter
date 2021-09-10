@@ -9,8 +9,10 @@ const handleModal = require('./handleModalWindow');
 let mainWindow;
 async function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 600,
-    height: 800,
+    width: 700,
+    height: 950,
+    alwaysOnTop: true,
+    titleBarStyle: 'hiddenInset',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -33,6 +35,8 @@ async function createWindow() {
 async function createModalWindow(url) {
   const modal = new BrowserWindow({
     parent: mainWindow,
+    width: 800,
+    height: 950,
     modal: true,
     show: false
   })
