@@ -21,7 +21,7 @@ export default function ReceiveAccessCode() {
   return (
     <Flex direction='column' gap={6}>
       <Flex justifyContent='between'>
-        <Heading> Recieve access code</Heading>
+        <Heading> Receive access code</Heading>
         <DataModal data={data}/>
       </Flex>
       <Text>This URL is your request for an access code</Text>
