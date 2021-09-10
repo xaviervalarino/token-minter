@@ -15,6 +15,7 @@ export default function ButtonNav ({ routes }) {
         <Flex key={i-1}>
           <Button
             text='Back'
+            size='lg'
             onClick={ () => history.push(routes[i-1].path) }
           />
         </Flex>
@@ -26,6 +27,7 @@ export default function ButtonNav ({ routes }) {
         <Button
           color='red'
           text='Next'
+          size='lg'
           onClick={ () => history.push(routes[i+1].path) }
         />
         </Flex>
