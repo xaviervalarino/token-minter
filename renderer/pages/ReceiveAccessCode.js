@@ -25,9 +25,10 @@ export default function ReceiveAccessCode() {
         <DataModal data={data}/>
       </Flex>
       <Text>This URL is your request for an access code</Text>
-      <CodeBlock rounding={2} color='darkGray'>
-            Not enough data, yet...
+      <CodeBlock dark rounding={2} color='darkGray'>
+        { decodeURIComponent(data.reqUrl) }
       </CodeBlock>
+      </Flex>
       <Flex justifyContent='end'>
         <Button
           text='Request access code'
