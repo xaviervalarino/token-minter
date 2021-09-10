@@ -18,7 +18,7 @@ async function createWindow() {
   let appURL;
   if ( app.isPacked ) {
     appURL = url.format({
-      pathname: path.join(__dirname, 'index.html'),
+      pathname: path.join(process.cwd(), 'renderer/index.html'),
       protocol: 'file',
       slashes: true
     })
