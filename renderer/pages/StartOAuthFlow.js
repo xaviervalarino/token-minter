@@ -2,6 +2,8 @@ import { useContext} from 'react';
 import {
   Flex,
   Heading,
+  Link,
+  Text,
   TextField,
 } from 'gestalt';
 import { DataContext } from '../components/DataContext'
@@ -21,6 +23,13 @@ export default function StartOAuthFlow() {
         <Heading>Start OAuth flow</Heading>
         <DataModal data={data}/>
       </Flex>
+      <Text>
+        See{' '}
+        <Text inline weight='bold'>
+          <Link inline href='https://developers-staging.pinterest.com/docs/api/v5/#tag/Authentication'>Start the OAuth flow</Link>
+        </Text>
+        {' '}in the 'Getting Started' section of the API Docs
+      </Text>
       <TextField
         label='App Id'
         name='App Id'
