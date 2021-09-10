@@ -7,9 +7,9 @@ module.exports = function handleModal(createModal) {
     return new Promise((resolve, reject) => {
       modal.webContents.on('will-navigate', (e, redirect) => {
         setTimeout( () => modal.close(), 3000)
-        const parsed = queryString.parse(redirect)
         console.log('handleModal', parsed);
         resolve(parsed)
+        const parsed = queryString.parseUrl(redirect)
       });
     });
   });
