@@ -3,8 +3,8 @@ const path = require('path');
 const url = require('url');
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
-const dataStore = require('./dataStore');
-const handleModal = require('./handleModalWindow');
+const dataStore = require('./api/dataStore');
+const handleModal = require('./api/handleModalWindow');
 
 let mainWindow;
 async function createWindow() {
