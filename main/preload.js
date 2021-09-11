@@ -10,5 +10,8 @@ contextBridge.exposeInMainWorld( 'api', {
   },
   openModal: (url) => {
     return ipcRenderer.invoke('openModal', url);
+  },
+  closeModal: () => {
+    return ipcRenderer.invoke('closeModal');
   }
 })

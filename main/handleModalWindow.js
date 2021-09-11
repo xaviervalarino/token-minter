@@ -2,15 +2,20 @@ const { ipcMain } = require('electron');
 const queryString = require('query-string');
 
 module.exports = function handleModal(createModal) {
+  let modal, view
   ipcMain.handle('openModal', async(event, arg) => {
-    const modal = await createModal(arg)
+    [modal, view] = await createModal(arg)
     return new Promise((resolve, reject) => {
-      modal.webContents.on('will-navigate', (e, redirect) => {
-        setTimeout( () => modal.close(), 3000)
-        console.log('handleModal', parsed);
-        resolve(parsed)
+      view.webContents.on('will-navigate', (e, redirect) => {
         const parsed = queryString.parseUrl(redirect)
+        if ( parsed.url === 'http://localhost/') {
+          resolve(parsed.query.code)
+          modal.close()
+        }
       });
     });
+  });
+  ipcMain.handle('closeModal', async(event) => {
+    modal.close()
   });
 }

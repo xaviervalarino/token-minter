@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, BrowserView } = require('electron');
 const path = require('path');
 const url = require('url');
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
@@ -38,11 +38,27 @@ async function createModalWindow(url) {
     width: 800,
     height: 950,
     modal: true,
-    show: false
+    show: false,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
-  modal.loadURL(url)
+  const view = new BrowserView()
+  const height = 100;
+  modal.webContents.openDevTools({ mode: 'detach' })
+  installExtension(REACT_DEVELOPER_TOOLS);
+  modal.setBrowserView(view)
+  view.setBounds({
+    x: 0,
+    y: height,
+    width: modal.getBounds().width,
+    height: modal.getBounds().height - height
+  })
+  view.webContents.loadURL(url);
+  modal.loadURL('http://localhost:3000#modal-controls')
+
   await modal.once('ready-to-show', () => modal.show())
-  return modal;
+  return [modal, view];
 }
 
 app.on('ready', createWindow)

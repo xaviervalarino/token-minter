@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 import StartOAuthFlow from '../pages/StartOAuthFlow';
 import ReceiveAccessCode from '../pages/ReceiveAccessCode';
 import ExchangeForAccessToken from '../pages/ExchangeForAccessToken';
+import ModalControls from './ModalControls'
 
 const routes = [
   {
@@ -23,6 +24,10 @@ const routes = [
   {
     path:'/exchange-for-access-token',
     component: ExchangeForAccessToken
+  },
+  {
+    path:'/modal-controls',
+    component: ModalControls
   }
 ];
 
