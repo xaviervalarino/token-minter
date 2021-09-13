@@ -7,7 +7,7 @@ import {
   TextField,
 } from 'gestalt';
 import { DataContext } from '../components/DataContext'
-import DataModal from '../components/DataModal';
+import DataDisplay from '../components/DataDisplay';
 import ScopeCheckboxes from '../components/ScopeCheckboxes';
 
 export default function StartOAuthFlow() {
@@ -21,7 +21,7 @@ export default function StartOAuthFlow() {
     <Flex direction='column' gap={6}>
       <Flex justifyContent='between'>
         <Heading>Start OAuth flow</Heading>
-        <DataModal data={data}/>
+        <DataDisplay data={data}/>
       </Flex>
       <Text>
         See{' '}

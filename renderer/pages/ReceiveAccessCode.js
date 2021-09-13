@@ -6,7 +6,7 @@ import {
   Text
 } from 'gestalt';
 import { DataContext } from '../components/DataContext';
-import DataModal from '../components/DataModal';
+import DataDisplay from '../components/DataDisplay';
 import CodeBlock from '../components/CodeBlock';
 
 const createUrl = ({ appId, redirectUrl, scopes, optionalState }) => {
@@ -40,7 +40,7 @@ export default function ReceiveAccessCode() {
     <Flex direction='column' gap={6}>
       <Flex justifyContent='between'>
         <Heading> Receive access code</Heading>
-        <DataModal data={data}/>
+        <DataDisplay data={data}/>
       </Flex>
       <Flex direction='column' gap={2}>
       <Text>This URL is your request for an access code</Text>

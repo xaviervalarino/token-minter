@@ -4,7 +4,7 @@ import {
   Heading,
 } from 'gestalt';
 import { DataContext } from '../components/DataContext';
-import DataModal from '../components/DataModal';
+import DataDisplay from '../components/DataDisplay';
 
 export default function ExchangeForAccessToken() {
   const [ data ] = useContext(DataContext);
@@ -13,7 +13,7 @@ export default function ExchangeForAccessToken() {
     <Flex direction='column' gap={6}>
       <Flex justifyContent='between'>
         <Heading>Exchange for access token</Heading>
-        <DataModal data={data}/>
+        <DataDisplay data={data}/>
       </Flex>
     </Flex>
   )

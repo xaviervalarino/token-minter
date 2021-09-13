@@ -7,7 +7,7 @@ import {
 } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 import { DataContext } from '../components/DataContext';
-import  DataModal  from '../components/DataModal';
+import  DataDisplay  from '../components/DataDisplay';
 
 
 export default function Home(props) {
@@ -17,7 +17,7 @@ export default function Home(props) {
     <Flex direction='column' gap={6}>
       <Flex justifyContent='between'>
         <Heading>OAuth token minter</Heading>
-        <DataModal data={data}/>
+        <DataDisplay data={data}/>
       </Flex>
       <Heading size='sm'>Instructions</Heading>
       <Text>Review{' '}
