@@ -11,7 +11,6 @@ createWindow.main = function createMainWindow() {
   mainWindow = new BrowserWindow({
     width: 700,
     height: 950,
-    alwaysOnTop: true,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       nativeWindowOpen: true,
