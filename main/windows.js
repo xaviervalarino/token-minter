@@ -26,7 +26,7 @@ createWindow.main = function createMainWindow() {
       slashes: true
     })
   } else {
-    appURL = 'http://localhost:3000';
+    appURL = 'http://localhost:8080';
     mainWindow.webContents.openDevTools({ mode: 'detach' })
     installExtension(REACT_DEVELOPER_TOOLS);
   }

@@ -3,5 +3,5 @@
 ## Getting started
 Start dev server:
 ```
-npm run dev
+npm start
 ```
