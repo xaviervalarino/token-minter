@@ -3,7 +3,9 @@ const Store = require('electron-store');
 const store = new Store();
 
 module.exports = function dataStore() {
-  store.set({ data: {} });
+  if (!store.get('data')) {
+    store.set({ data: {} });
+  }
 
   ipcMain.handle('getStore', (event, arg) => {
     return store.get(arg)
