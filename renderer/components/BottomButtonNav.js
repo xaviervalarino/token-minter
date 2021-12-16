@@ -5,17 +5,17 @@ export default function ButtonNav({ routes }) {
   const history = useHistory();
   const currentPath = history.location.pathname;
   const buttons = [];
-  routes.forEach(({ path }, i) => {
+  routes.forEach(({ id, path }, i) => {
     if (path === currentPath && i > 0) {
       buttons.push(
-        <Flex key={i - 1}>
+        <Flex key={`${id}_back`}>
           <Button text="Back" size="lg" onClick={() => history.push(routes[i - 1].path)} />
         </Flex>,
       );
     }
     if (path === currentPath && i < routes.length - 1) {
       buttons.push(
-        <Flex key={i + 1} flex="grow" justifyContent="end">
+        <Flex key={`${id}_next`} flex="grow" justifyContent="end">
           <Button
             color="red"
             text="Next"

@@ -65,9 +65,9 @@ export default function ScopeCheckboxes({ data, setData }) {
     })();
   };
 
-  const createCheckboxes = scopes.map(({ name, description }, index) => {
+  const createCheckboxes = scopes.map(({ name, description }) => {
     return (
-      <Box key={index} width="40vw" marginBottom={6}>
+      <Box key={name} width="40vw" marginBottom={6}>
         <Checkbox
           name={name}
           id={name}
