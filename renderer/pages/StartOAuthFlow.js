@@ -27,7 +27,7 @@ export default function StartOAuthFlow() {
             Start the OAuth flow
           </Link>
         </Text>{' '}
-        in the 'Getting Started' section of the API Docs
+        in the &lsquo;Getting Started&rsquo; section of the API Docs
       </Text>
       <TextField
         label="App Id"

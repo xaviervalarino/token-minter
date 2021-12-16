@@ -24,7 +24,7 @@ export default function Home() {
             App setup steps
           </Link>
         </Text>{' '}
-        in the 'Getting started' section of the Docs to see prerequisites
+        in the &lsquo;Getting started&rsquo; section of the Docs to see prerequisites
       </Text>
       <ul>
         <li>
@@ -34,7 +34,7 @@ export default function Home() {
         </li>
         <li>
           <Text>
-            Set your 'Redirect URL' to <code>http://localhost/</code>
+            Set your &lsquo;Redirect URL&rsquo; to <code>http://localhost/</code>
           </Text>
         </li>
       </ul>
