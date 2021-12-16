@@ -4,7 +4,8 @@ export default function CodeBlock({ dark, rounding, children }) {
   const bkg = dark ? 'darkGray' : 'lightGray';
   const fg = dark ? 'white' : 'darkGray';
   const style = {
-    fontFamily: 'SF Mono',
+    fontFamily:
+      'SFMono-Medium,SF Mono,Segoe UI Mono,Roboto Mono,Ubuntu Mono,Menlo,Consolas,Courier,monospace',
     lineHeight: 1.4,
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word',
