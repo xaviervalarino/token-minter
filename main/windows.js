@@ -7,7 +7,7 @@ let mainWindow;
 const createWindow = {};
 const preload = path.join(__dirname, 'preload.js');
 
-createWindow.main = function createMainWindow() {
+createWindow.main = () => {
   mainWindow = new BrowserWindow({
     width: 700,
     height: 950,
@@ -32,7 +32,7 @@ createWindow.main = function createMainWindow() {
   mainWindow.loadURL(appURL);
 };
 
-createWindow.modal = function () {
+createWindow.modal = () => {
   const modal = {};
   modal.open = async function openModal(uri) {
     modal.window = new BrowserWindow({
