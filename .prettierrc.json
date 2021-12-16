@@ -1,0 +1,23 @@
+{
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "arrowParens": "always",
+        "bracketSameLine": false,
+        "printWidth": 100,
+        "quoteProps": "preserve",
+        "tabWidth": 2,
+        "trailingComma": "all"
+      }
+    },
+    {
+      "files": "*.css",
+      "options": {
+        "parser": "css",
+        "singleQuote": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [ 
+    "react",
+    "react-hooks",
+    "prettier"
+  ],
+  "parser": "@babel/eslint-parser",
+  "rules": {
+    "prettier/prettier": "warn",
+    "react/jsx-filename-extension": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/function-component-definition": [ 2, {
+      "namedComponents": "function-declaration"
+    }],
+    "react/prop-types": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  }
+}
