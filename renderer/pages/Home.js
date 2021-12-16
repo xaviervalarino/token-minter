@@ -4,7 +4,7 @@ import 'gestalt/dist/gestalt.css';
 import { DataContext } from '../components/DataContext';
 import DataDisplay from '../components/DataDisplay';
 
-export default function Home(props) {
+export default function Home() {
   const [data] = useContext(DataContext);
 
   return (

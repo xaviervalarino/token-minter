@@ -1,7 +1,7 @@
 import { HashRouter, Switch } from 'react-router-dom';
 import Routes from './components/Routes';
 
-export default function App(props) {
+export default function App() {
   return (
     <HashRouter>
       <Switch>

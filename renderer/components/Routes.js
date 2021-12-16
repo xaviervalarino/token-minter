@@ -31,7 +31,7 @@ const routes = [
   },
 ];
 
-export default function Routes(props) {
+export default function Routes() {
   return routes.map(({ path, component }, i) => {
     const exact = !i;
     return (
@@ -39,7 +39,7 @@ export default function Routes(props) {
         key={i}
         exact={exact}
         path={path}
-        render={(props) => <PageLayout page={component} routes={routes} />}
+        render={() => <PageLayout page={component} routes={routes} />}
       />
     );
   });

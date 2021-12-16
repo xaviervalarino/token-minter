@@ -8,11 +8,11 @@ module.exports = function dataStore() {
     store.set({ data: {} });
   }
 
-  ipcMain.handle('getStore', (event, arg) => {
+  ipcMain.handle('getStore', (_, arg) => {
     return store.get(arg);
   });
 
-  ipcMain.handle('setStore', (event, key, value) => {
+  ipcMain.handle('setStore', (_, key, value) => {
     store.set(key, value);
     return store.get(key);
   });
