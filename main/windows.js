@@ -34,7 +34,7 @@ createWindow.main = function createMainWindow() {
 
 createWindow.modal = function () {
   const modal = {};
-  modal.open = async function openModal(url) {
+  modal.open = async function openModal(uri) {
     modal.window = new BrowserWindow({
       parent: mainWindow,
       width: 800,
@@ -57,7 +57,7 @@ createWindow.modal = function () {
       width: modal.window.getBounds().width,
       height: modal.window.getBounds().height - height,
     });
-    modal.view.webContents.loadURL(url);
+    modal.view.webContents.loadURL(uri);
     modal.window.loadURL('http://localhost:3000#modal-controls');
 
     await modal.window.once('ready-to-show', modal.window.show);
