@@ -46,7 +46,7 @@ const scopes = [
 
 export default function ScopeCheckboxes({ data, setData }) {
   useEffect(() => {
-    if (!data.hasOwnProperty('scopes')) {
+    if (!Object.prototype.hasOwnProperty.call(data, 'scopes')) {
       setData({ ...data, scopes: [] });
     }
   });
