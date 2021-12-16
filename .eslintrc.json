@@ -12,6 +12,7 @@
   ],
   "parser": "@babel/eslint-parser",
   "rules": {
+    "no-shadow": [ 1, { "allow": ["_"]}],
     "prettier/prettier": "warn",
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
