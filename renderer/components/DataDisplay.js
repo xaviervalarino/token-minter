@@ -8,35 +8,29 @@ import {
   IconButton,
   Layer,
   Sheet,
-  Tooltip
-} from "gestalt";
+  Tooltip,
+} from 'gestalt';
 import CodeBlock from './CodeBlock';
 
 export default function DataDisplay({ data }) {
-  const [ showSheet, setShowSheet ] = useState(false);
+  const [showSheet, setShowSheet] = useState(false);
 
-  const DataDisplaySheet = ({ onDismiss }) => {
+  function DataDisplaySheet({ onDismiss }) {
     return (
       <Sheet
-        accessibilityDismissButtonLabel=''
-        accessibilitySheetLabel='Current app data'
-        size='sm'
-        onDismiss={ onDismiss }
-        heading='Current app data'
-        footer={ ({onDismissStart}) => (
-          <Flex justifyContent='end' gap={0}>
-            <Button
-              color='red'
-              size='lg'
-              text='Got it'
-              onClick={ onDismissStart }/>
+        accessibilityDismissButtonLabel=""
+        accessibilitySheetLabel="Current app data"
+        size="sm"
+        onDismiss={onDismiss}
+        heading="Current app data"
+        footer={({ onDismissStart }) => (
+          <Flex justifyContent="end" gap={0}>
+            <Button color="red" size="lg" text="Got it" onClick={onDismissStart} />
           </Flex>
         )}
       >
         <Box marginStart={-8} marginEnd={-8}>
-          <CodeBlock>
-            { JSON.stringify(data, null, '\r  ') }
-          </CodeBlock>
+          <CodeBlock>{JSON.stringify(data, null, '\r  ')}</CodeBlock>
         </Box>
       </Sheet>
     );
@@ -47,21 +41,18 @@ export default function DataDisplay({ data }) {
 
   return (
     <>
-      <Tooltip text='See data'>
+      <Tooltip text="See data">
         <IconButton
-          accessibilityLabel='Display app data'
-          bgColor='darkGray'
-          icon='cog'
-          size='sm'
-          onClick={() =>  setShowSheet(true) }
+          accessibilityLabel="Display app data"
+          bgColor="darkGray"
+          icon="cog"
+          size="sm"
+          onClick={() => setShowSheet(true)}
         />
       </Tooltip>
-      { showSheet && (
+      {showSheet && (
         <Layer zIndex={zIndex}>
-          <DataDisplaySheet
-            data={data}
-            onDismiss={() => setShowSheet(false) }
-          />
+          <DataDisplaySheet data={data} onDismiss={() => setShowSheet(false)} />
         </Layer>
       )}
     </>

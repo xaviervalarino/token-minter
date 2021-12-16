@@ -1,11 +1,11 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld( 'api', {
+contextBridge.exposeInMainWorld('api', {
   getStore: (key) => {
     return ipcRenderer.invoke('getStore', key);
   },
   setStore: (...args) => {
-    const [ key, value ] = args;
+    const [key, value] = args;
     return ipcRenderer.invoke('setStore', key, value);
   },
   openModal: (url) => {
@@ -13,5 +13,5 @@ contextBridge.exposeInMainWorld( 'api', {
   },
   closeModal: () => {
     return ipcRenderer.invoke('closeModal');
-  }
-})
+  },
+});

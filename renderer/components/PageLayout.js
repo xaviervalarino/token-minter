@@ -1,6 +1,6 @@
 import { Box } from 'gestalt';
 import BottomButtonNav from './BottomButtonNav';
-import { DataProvider } from './DataContext'
+import { DataProvider } from './DataContext';
 
 export default function PageLayout({ page: Page, routes }) {
   return (
@@ -9,17 +9,20 @@ export default function PageLayout({ page: Page, routes }) {
       <Box
         height={40}
         dangerouslySetInlineStyle={{
-          __style: { WebkitAppRegion: 'drag' }
+          __style: { WebkitAppRegion: 'drag' },
         }}
       />
       <Box
-        position='absolute'
-        top bottom left right
-        display='flex'
-        direction='column'
-        overflow='hidden'
+        position="absolute"
+        top
+        bottom
+        left
+        right
+        display="flex"
+        direction="column"
+        overflow="hidden"
       >
-        <Box flex='grow' overflow='auto'>
+        <Box flex="grow" overflow="auto">
           <Box padding={10}>
             <DataProvider>
               <Page />
@@ -29,5 +32,5 @@ export default function PageLayout({ page: Page, routes }) {
         <BottomButtonNav routes={routes} />
       </Box>
     </>
-  )
+  );
 }

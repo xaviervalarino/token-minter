@@ -14,26 +14,26 @@ createWindow.main = function createMainWindow() {
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       nativeWindowOpen: true,
-      preload: preload
-    }
-  })
+      preload,
+    },
+  });
   let appURL;
-  if ( app.isPacked ) {
+  if (app.isPacked) {
     appURL = url.format({
       pathname: path.join(process.cwd(), 'renderer/index.html'),
       protocol: 'file',
-      slashes: true
-    })
+      slashes: true,
+    });
   } else {
     appURL = 'http://localhost:8080';
-    mainWindow.webContents.openDevTools({ mode: 'detach' })
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
     installExtension(REACT_DEVELOPER_TOOLS);
   }
-  mainWindow.loadURL(appURL)
-}
+  mainWindow.loadURL(appURL);
+};
 
 createWindow.modal = function () {
-  const modal = {}
+  const modal = {};
   modal.open = async function openModal(url) {
     modal.window = new BrowserWindow({
       parent: mainWindow,
@@ -43,28 +43,28 @@ createWindow.modal = function () {
       show: false,
       webPreferences: {
         nativeWindowOpen: true,
-        preload: preload
-      }
-    })
-    modal.view = new BrowserView()
+        preload,
+      },
+    });
+    modal.view = new BrowserView();
     const height = 100;
-    modal.window.webContents.openDevTools({ mode: 'detach' })
+    modal.window.webContents.openDevTools({ mode: 'detach' });
     installExtension(REACT_DEVELOPER_TOOLS);
-    modal.window.setBrowserView(modal.view)
+    modal.window.setBrowserView(modal.view);
     modal.view.setBounds({
       x: 0,
       y: height,
       width: modal.window.getBounds().width,
-      height: modal.window.getBounds().height - height
-    })
+      height: modal.window.getBounds().height - height,
+    });
     modal.view.webContents.loadURL(url);
-    modal.window.loadURL('http://localhost:3000#modal-controls')
+    modal.window.loadURL('http://localhost:3000#modal-controls');
 
-    await modal.window.once('ready-to-show', modal.window.show)
+    await modal.window.once('ready-to-show', modal.window.show);
     return modal;
-  }
+  };
   modal.close = () => modal.window.close();
   return modal;
-}
+};
 
 module.exports = createWindow;

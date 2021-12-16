@@ -1,25 +1,20 @@
-import {
-  Box,
-  Flex,
-  IconButton,
-  Heading,
-} from 'gestalt';
+import { Box, Flex, IconButton, Heading } from 'gestalt';
 
 export default function ModalHeader() {
   const closeModal = () => window.api.closeModal();
   return (
-    <Box marginTop={-3} >
-      <Flex justifyContent='between'>
+    <Box marginTop={-3}>
+      <Flex justifyContent="between">
         <Heading>Pinterest OAuth endpoint</Heading>
         <IconButton
-          accessibilityLabel='Exit modal window'
+          accessibilityLabel="Exit modal window"
           bgColor="white"
           icon="cancel"
           iconColor="darkGray"
-          size='lg'
-          onClick={ closeModal }
-          />
+          size="lg"
+          onClick={closeModal}
+        />
       </Flex>
     </Box>
-  )
+  );
 }
