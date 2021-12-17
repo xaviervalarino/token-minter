@@ -1,14 +1,18 @@
 {
-  "name": "token-minter-electron",
+  "name": "token-minter",
   "version": "0.0.0",
   "private": true,
+  "author": "Xavier Valarino <xvalarino@pinterest.com>",
+  "description": "A tool for testing out OAuth2 token generation in Pinterest's API v5",
   "main": "main/electron.js",
+  "homepage": "",
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack"
+    "build": "webpack",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "dependencies": {
-    "electron": "^16.0.4",
     "electron-store": "^8.0.1",
     "gestalt": "^40.4.7",
     "query-string": "^7.0.1",
@@ -23,6 +27,8 @@
     "babel": "^6.23.0",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
     "electron-devtools-installer": "^3.2.0",
     "electronmon": "^2.0.2",
     "eslint-config-airbnb": "^19.0.2",
@@ -46,5 +52,19 @@
     "development": [
       "last 1 electron version"
     ]
+  },
+  "build": {
+    "appId": "com.electron.token-minter.app",
+    "productName": "Token Minter",
+    "files": [
+      "main",
+      "build"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    }
   }
 }
