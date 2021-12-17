@@ -13,21 +13,25 @@ const routes = [
     id: 'home',
     path: '/',
     component: Home,
+    isPage: true,
   },
   {
     id: 'start-oauth',
     path: '/start-oauth-flow',
     component: StartOAuthFlow,
+    isPage: true,
   },
   {
     id: 'recieve-code',
     path: '/receive-access-code',
     component: ReceiveAccessCode,
+    isPage: true,
   },
   {
     id: 'exchange-token',
     path: '/exchange-for-access-token',
     component: ExchangeForAccessToken,
+    isPage: true,
   },
   {
     id: 'modal-controls',
