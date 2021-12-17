@@ -1,11 +1,21 @@
 const { app, BrowserWindow, BrowserView } = require('electron');
 const path = require('path');
-const url = require('url');
-const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+const { pathToFileURL } = require('url');
 
 let mainWindow;
+const appURL = app.isPackaged
+  ? pathToFileURL(path.join(__dirname, '../build/index.html')).href
+  : 'http://localhost:8080';
+
 const createWindow = {};
 const preload = path.join(__dirname, 'preload.js');
+
+function installDevTools() {
+  /* eslint-disable global-require */
+  const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+  installExtension(REACT_DEVELOPER_TOOLS);
+  /* eslint-enable global-require */
+}
 
 createWindow.main = () => {
   mainWindow = new BrowserWindow({
@@ -17,24 +27,16 @@ createWindow.main = () => {
       preload,
     },
   });
-  let appURL;
-  if (app.isPacked) {
-    appURL = url.format({
-      pathname: path.join(process.cwd(), 'renderer/index.html'),
-      protocol: 'file',
-      slashes: true,
-    });
-  } else {
-    appURL = 'http://localhost:8080';
+  if (!app.isPackaged) {
     mainWindow.webContents.openDevTools({ mode: 'detach' });
-    installExtension(REACT_DEVELOPER_TOOLS);
+    installDevTools();
   }
   mainWindow.loadURL(appURL);
 };
 
 createWindow.modal = () => {
   const modal = {};
-  modal.open = async function openModal(uri) {
+  modal.open = async function openModal(url) {
     modal.window = new BrowserWindow({
       parent: mainWindow,
       width: 800,
@@ -48,8 +50,9 @@ createWindow.modal = () => {
     });
     modal.view = new BrowserView();
     const height = 100;
-    modal.window.webContents.openDevTools({ mode: 'detach' });
-    installExtension(REACT_DEVELOPER_TOOLS);
+    if (!app.isPackaged) {
+      modal.window.webContents.openDevTools({ mode: 'detach' });
+    }
     modal.window.setBrowserView(modal.view);
     modal.view.setBounds({
       x: 0,
@@ -57,9 +60,8 @@ createWindow.modal = () => {
       width: modal.window.getBounds().width,
       height: modal.window.getBounds().height - height,
     });
-    modal.view.webContents.loadURL(uri);
-    modal.window.loadURL('http://localhost:3000#modal-controls');
-
+    modal.view.webContents.loadURL(url);
+    modal.window.loadURL(`${appURL}#modal-controls`);
     await modal.window.once('ready-to-show', modal.window.show);
     return modal;
   };

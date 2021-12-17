@@ -10,6 +10,9 @@
     "react-hooks",
     "prettier"
   ],
+  "settings": {
+    "import/core-modules": ["electron", "electron-devtools-installer"]
+  },
   "parser": "@babel/eslint-parser",
   "rules": {
     "no-shadow": [ 1, { "allow": ["_"]}],
