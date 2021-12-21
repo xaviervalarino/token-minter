@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import PageLayout from './PageLayout';
+import Layout from './Layout';
 
 // Pages
 import Home from '../pages/Home';
@@ -13,42 +13,43 @@ const routes = [
     id: 'home',
     path: '/',
     component: Home,
-    isPage: true,
+    type: 'main',
   },
   {
     id: 'start-oauth',
     path: '/start-oauth-flow',
     component: StartOAuthFlow,
-    isPage: true,
+    type: 'main',
   },
   {
     id: 'recieve-code',
     path: '/receive-access-code',
     component: ReceiveAccessCode,
-    isPage: true,
+    type: 'main',
   },
   {
     id: 'exchange-token',
     path: '/exchange-for-access-token',
     component: ExchangeForAccessToken,
-    isPage: true,
+    type: 'main',
   },
   {
     id: 'modal-controls',
     path: '/modal-controls',
     component: ModalHeader,
+    type: 'modal',
   },
 ];
 
 export default function Routes() {
-  return routes.map(({ id, path, component }, i) => {
+  return routes.map(({ id, path, component, type }, i) => {
     const exact = !i;
     return (
       <Route
         key={id}
         exact={exact}
         path={path}
-        render={() => <PageLayout page={component} routes={routes} />}
+        render={() => <Layout type={type} page={component} routes={routes} />}
       />
     );
   });

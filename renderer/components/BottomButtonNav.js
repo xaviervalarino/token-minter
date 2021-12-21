@@ -3,7 +3,7 @@ import { Box, Button, Flex } from 'gestalt';
 
 export default function ButtonNav({ routes }) {
   const history = useHistory();
-  const pages = routes.filter(({ isPage }) => isPage);
+  const pages = routes.filter(({ type }) => type === 'main');
   const index = pages.findIndex(({ path }) => path === history.location.pathname);
   const buttons = [];
   if (index > 0) {

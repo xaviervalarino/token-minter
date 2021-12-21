@@ -1,7 +1,7 @@
 import { Box } from 'gestalt';
 import BottomButtonNav from './BottomButtonNav';
 
-export default function PageLayout({ page: Page, routes }) {
+export default function Layout({ page: Page, type, routes }) {
   return (
     <>
       {/* Target area for moving the window around with a mouse */}
@@ -26,7 +26,7 @@ export default function PageLayout({ page: Page, routes }) {
             <Page />
           </Box>
         </Box>
-        <BottomButtonNav routes={routes} />
+        {type === 'main' && <BottomButtonNav routes={routes} />}
       </Box>
     </>
   );
