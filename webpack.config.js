@@ -7,7 +7,7 @@ module.exports = {
   mode: 'development',
   entry: path.resolve(__dirname, 'renderer/'),
   target: ['electron-renderer', 'web'],
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: './bundle.js',
@@ -52,11 +52,14 @@ module.exports = {
     onAfterSetupMiddleware: () => {
       spawn('electronmon', ['.'], {
         shell: true,
-        env: process.env,
-        stdio: 'inherit'
+        env: {
+          ...process.env,
+          ELECTRON_DISABLE_SECURITY_WARNINGS: 'true',
+        },
+        stdio: 'inherit',
       })
       .on('close', () => process.exit(0))
       .on('error', (spawnError) => console.error(spawnError))
-    }
-  }
-}
+    },
+  },
+};
