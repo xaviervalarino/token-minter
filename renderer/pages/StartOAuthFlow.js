@@ -9,8 +9,8 @@ const reducer = (state, newState) => ({ ...state, ...newState });
 export default function StartOAuthFlow() {
   const [data, setData] = useContext(DataContext);
   const [userInput, setUserInput] = useReducer(reducer, {
-    appId: data.appId || '',
-    redirectUrl: data.redirectUrl || '',
+    appId: data.appId,
+    redirectUrl: data.redirectUrl,
   });
 
   const changeHandler = ({ event, value }) => setUserInput({ [event.target.id]: value });
