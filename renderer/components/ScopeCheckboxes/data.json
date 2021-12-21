@@ -1,0 +1,42 @@
+[
+  {
+    "name": "ads:read",
+    "description": "Read access to advertising data"
+  },
+  {
+    "name": "boards:read",
+    "description": "Read access to public boards"
+  },
+  {
+    "name": "boards:read_secret",
+    "description": "Read access to secret boards"
+  },
+  {
+    "name": "boards:write",
+    "description": "Write access to create, update, or delete boards"
+  },
+  {
+    "name": "boards:write_secret",
+    "description": "Write access to create, update, or delete secret boards"
+  },
+  {
+    "name": "pins:read",
+    "description": "Read access to Pins"
+  },
+  {
+    "name": "pins:read_secret",
+    "description": "Read access to secret Pins"
+  },
+  {
+    "name": "pins:write",
+    "description": "Write access to create, update, or delete Pins"
+  },
+  {
+    "name": "pins:write_secret",
+    "description": "Write access to create, update, or delete secret Pins"
+  },
+  {
+    "name": "user_accounts:read",
+    "description": "Read access to user accounts"
+  }
+]
