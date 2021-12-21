@@ -1,4 +1,4 @@
-import { useContext, useReducer } from 'react';
+import { useContext, useEffect, useReducer } from 'react';
 import { Flex, Heading, Link, Text, TextField } from 'gestalt';
 import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
@@ -15,6 +15,8 @@ export default function StartOAuthFlow() {
 
   const changeHandler = ({ event, value }) => setUserInput({ [event.target.id]: value });
   const blurHandler = () => setData(userInput);
+
+  useEffect(() => setUserInput(data), [data]);
 
   return (
     <Flex direction="column" gap={6}>
