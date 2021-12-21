@@ -1,8 +1,10 @@
-export async function getStore(cb, initialValue) {
-  const res = (await window.api.getStore('data')) || initialValue;
-  cb(res);
-}
+const store = {
+  get data() {
+    return (async () => window.api.getStore('data'))();
+  },
+  set data(data) {
+    window.api.setStore('data', data);
+  },
+};
 
-export async function setStore(data) {
-  window.api.setStore('data', data);
-}
+export default store;

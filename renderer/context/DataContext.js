@@ -1,5 +1,5 @@
 import { createContext, useEffect, useMemo, useReducer, useState } from 'react';
-import { getStore, setStore } from './dataStore';
+import store from './dataStore';
 
 const initialValue = {
   appId: '',
@@ -17,14 +17,14 @@ export function DataProvider({ children }) {
     return [data, setData];
   }, [data]);
 
-  useEffect(() => {
-    getStore(setData, initialValue);
+  useEffect(async () => {
+    setData((await store.data) || initialValue);
     setFromStore(true);
   }, []);
 
   useEffect(() => {
     if (fromStore) {
-      setStore(data);
+      store.data = data;
     }
   }, [data]);
 
