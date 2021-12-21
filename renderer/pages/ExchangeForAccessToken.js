@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Flex, Heading } from 'gestalt';
-import { DataContext } from '../components/DataContext';
+import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
 
 export default function ExchangeForAccessToken() {

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Flex, Heading, Link, Text } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
-import { DataContext } from '../components/DataContext';
+import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
 
 export default function Home() {

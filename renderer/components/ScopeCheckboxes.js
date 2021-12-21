@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Checkbox, Box, Fieldset, Flex } from 'gestalt';
 
 const scopes = [
@@ -45,12 +44,6 @@ const scopes = [
 ];
 
 export default function ScopeCheckboxes({ data, setData }) {
-  useEffect(() => {
-    if (!Object.prototype.hasOwnProperty.call(data, 'scopes')) {
-      setData({ ...data, scopes: [] });
-    }
-  });
-
   const onChange = ({ event, checked }) => {
     return (() => {
       const { name } = event.target;
@@ -61,7 +54,7 @@ export default function ScopeCheckboxes({ data, setData }) {
       } else {
         updatedScopes.push(name);
       }
-      setData({ ...data, scopes: updatedScopes });
+      setData({ scopes: updatedScopes });
     })();
   };
 
@@ -73,7 +66,7 @@ export default function ScopeCheckboxes({ data, setData }) {
           id={name}
           label={name}
           subtext={description}
-          checked={data.scopes && data.scopes.includes(name)}
+          checked={data.scopes.includes(name)}
           onChange={onChange}
         />
       </Box>

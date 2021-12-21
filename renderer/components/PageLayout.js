@@ -1,6 +1,6 @@
 import { Box } from 'gestalt';
 import BottomButtonNav from './BottomButtonNav';
-import { DataProvider } from './DataContext';
+import { DataProvider } from '../context/DataContext';
 
 export default function PageLayout({ page: Page, routes }) {
   return (

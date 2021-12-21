@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Button, Flex, Heading, Text } from 'gestalt';
-import { DataContext } from '../components/DataContext';
+import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
 import CodeBlock from '../components/CodeBlock';
 
@@ -20,13 +20,13 @@ export default function ReceiveAccessCode() {
     if (data) {
       const href = createUrl(data);
       if (!data.reqUrl || href !== data.reqUrl) {
-        setData({ ...data, reqUrl: href });
+        setData({ reqUrl: href });
       }
     }
   };
   const openModal = async () => {
     const parsed = await window.api.openModal(data.reqUrl);
-    setData({ ...data, accessCode: parsed });
+    setData({ accessCode: parsed });
   };
 
   useEffect(() => updateUrl());

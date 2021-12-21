@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Flex, Heading, Link, Text, TextField } from 'gestalt';
-import { DataContext } from '../components/DataContext';
+import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
 import ScopeCheckboxes from '../components/ScopeCheckboxes';
 
@@ -8,7 +8,7 @@ export default function StartOAuthFlow() {
   const [data, setData] = useContext(DataContext);
 
   const updateField = ({ event, value }) => {
-    setData({ ...data, [event.target.id]: value });
+    setData({ [event.target.id]: value });
   };
 
   return (

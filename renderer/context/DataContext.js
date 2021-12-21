@@ -1,25 +1,32 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useMemo, useReducer, useState } from 'react';
+import { getStore, setStore } from './dataStore';
 
-export const DataContext = createContext();
+const initialValue = {
+  appId: '',
+  redirectUrl: '',
+  scopes: [],
+};
+const reducer = (data, newData) => ({ ...data, ...newData });
+
+export const DataContext = createContext(null);
 
 export function DataProvider({ children }) {
-  const [data, setData] = useState({});
+  const [data, setData] = useReducer(reducer, initialValue);
+  const [fromStore, setFromStore] = useState(false);
+  const provider = useMemo(() => {
+    return [data, setData];
+  }, [data]);
+
   useEffect(() => {
-    async function getStore() {
-      const res = await window.api.getStore('data');
-      if (res) {
-        setData(res);
-      }
-    }
-    getStore();
+    getStore(setData, initialValue);
+    setFromStore(true);
   }, []);
 
   useEffect(() => {
-    async function setStore() {
-      window.api.setStore('data', data);
+    if (fromStore) {
+      setStore(data);
     }
-    setStore();
-  });
+  }, [data]);
 
-  return <DataContext.Provider value={[data, setData]}>{children}</DataContext.Provider>;
+  return <DataContext.Provider value={provider}>{children}</DataContext.Provider>;
 }
