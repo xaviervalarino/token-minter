@@ -1,42 +1,42 @@
 [
   {
     "name": "ads:read",
-    "description": "Read access to advertising data"
+    "description": "See all of your advertising data"
   },
   {
     "name": "boards:read",
-    "description": "Read access to public boards"
+    "description": "See your public boards, including group boards you join"
   },
   {
     "name": "boards:read_secret",
-    "description": "Read access to secret boards"
+    "description": "See your secret boards"
   },
   {
     "name": "boards:write",
-    "description": "Write access to create, update, or delete boards"
+    "description": "Create, update, or delete your public boards"
   },
   {
     "name": "boards:write_secret",
-    "description": "Write access to create, update, or delete secret boards"
+    "description": "Create, update, or delete your secret boards"
   },
   {
     "name": "pins:read",
-    "description": "Read access to Pins"
+    "description": "See your public pins"
   },
   {
     "name": "pins:read_secret",
-    "description": "Read access to secret Pins"
+    "description": "See your secret pins"
   },
   {
     "name": "pins:write",
-    "description": "Write access to create, update, or delete Pins"
+    "description": "Create, update, or delete your public pins"
   },
   {
     "name": "pins:write_secret",
-    "description": "Write access to create, update, or delete secret Pins"
+    "description": "Create, update, or delete your secret pins"
   },
   {
     "name": "user_accounts:read",
-    "description": "Read access to user accounts"
+    "description": "See your user accounts"
   }
 ]
