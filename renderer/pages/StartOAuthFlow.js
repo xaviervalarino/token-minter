@@ -1,15 +1,20 @@
-import { useContext } from 'react';
+import { useContext, useReducer } from 'react';
 import { Flex, Heading, Link, Text, TextField } from 'gestalt';
 import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
 import ScopeCheckboxes from '../components/ScopeCheckboxes';
 
+const reducer = (state, newState) => ({ ...state, ...newState });
+
 export default function StartOAuthFlow() {
   const [data, setData] = useContext(DataContext);
+  const [userInput, setUserInput] = useReducer(reducer, {
+    appId: data.appId || '',
+    redirectUrl: data.redirectUrl || '',
+  });
 
-  const updateField = ({ event, value }) => {
-    setData({ [event.target.id]: value });
-  };
+  const changeHandler = ({ event, value }) => setUserInput({ [event.target.id]: value });
+  const blurHandler = () => setData(userInput);
 
   return (
     <Flex direction="column" gap={6}>
@@ -33,15 +38,17 @@ export default function StartOAuthFlow() {
         label="App Id"
         name="App Id"
         id="appId"
-        value={data.appId || ''}
-        onChange={updateField}
+        value={userInput.appId}
+        onChange={changeHandler}
+        onBlur={blurHandler}
       />
       <TextField
         label="Redirect URL "
         name="Redirect URL"
         id="redirectUrl"
-        value={data.redirectUrl || ''}
-        onChange={updateField}
+        value={userInput.redirectUrl}
+        onChange={changeHandler}
+        onBlur={blurHandler}
       />
       <ScopeCheckboxes data={data} setData={setData} />
     </Flex>
