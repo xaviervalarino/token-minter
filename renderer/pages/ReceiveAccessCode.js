@@ -1,4 +1,5 @@
-import { useContext, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Button, Flex, Heading, Text } from 'gestalt';
 import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
@@ -14,8 +15,10 @@ const createUrl = ({ appId, redirectUrl, scopes, optionalState }) => {
   return url.href;
 };
 
-export default function ReceiveAccessCode() {
+export default function ReceiveAccessCode(props) {
   const [data, setData] = useContext(DataContext);
+  const setViewInfo = useOutletContext();
+
   const updateUrl = () => {
     if (data) {
       const href = createUrl(data);
@@ -29,6 +32,7 @@ export default function ReceiveAccessCode() {
     setData({ accessCode: parsed });
   };
 
+  useEffect(() => setViewInfo(props));
   useEffect(() => updateUrl());
 
   return (

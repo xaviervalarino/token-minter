@@ -1,11 +1,15 @@
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Flex, Heading, Link, Text } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
 import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
 
-export default function Home() {
+export default function Home(props) {
   const [data] = useContext(DataContext);
+  const setViewInfo = useOutletContext();
+
+  useEffect(() => setViewInfo(props));
 
   return (
     <Flex direction="column" gap={6}>

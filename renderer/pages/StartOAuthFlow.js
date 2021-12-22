@@ -1,4 +1,5 @@
 import { useContext, useEffect, useReducer } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Flex, Heading, Link, Text, TextField } from 'gestalt';
 import { DataContext } from '../context/DataContext';
 import DataDisplay from '../components/DataDisplay';
@@ -6,8 +7,9 @@ import ScopeCheckboxes from '../components/ScopeCheckboxes';
 
 const reducer = (state, newState) => ({ ...state, ...newState });
 
-export default function StartOAuthFlow() {
+export default function StartOAuthFlow(props) {
   const [data, setData] = useContext(DataContext);
+  const setViewInfo = useOutletContext();
   const [userInput, setUserInput] = useReducer(reducer, {
     appId: data.appId,
     redirectUrl: data.redirectUrl,
@@ -16,6 +18,7 @@ export default function StartOAuthFlow() {
   const changeHandler = ({ event, value }) => setUserInput({ [event.target.id]: value });
   const blurHandler = () => setData(userInput);
 
+  useEffect(() => setViewInfo(props));
   useEffect(() => setUserInput(data), [data]);
 
   return (

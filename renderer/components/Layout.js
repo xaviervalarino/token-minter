@@ -1,7 +1,11 @@
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Box } from 'gestalt';
 import BottomButtonNav from './BottomButtonNav';
 
-export default function Layout({ page: Page, type, routes }) {
+export default function Layout() {
+  const [viewInfo, setViewInfo] = useState({});
+
   return (
     <>
       {/* Target area for moving the window around with a mouse */}
@@ -23,10 +27,10 @@ export default function Layout({ page: Page, type, routes }) {
       >
         <Box flex="grow" overflow="auto">
           <Box padding={10}>
-            <Page />
+            <Outlet context={setViewInfo} />
           </Box>
         </Box>
-        {type === 'main' && <BottomButtonNav routes={routes} />}
+        {viewInfo.type === 'main' && <BottomButtonNav {...viewInfo} />}
       </Box>
     </>
   );

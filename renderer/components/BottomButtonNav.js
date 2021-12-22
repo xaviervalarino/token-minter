@@ -1,26 +1,34 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Flex } from 'gestalt';
+import routes from './Routes/data.json';
 
-export default function ButtonNav({ routes }) {
-  const history = useHistory();
-  const pages = routes.filter(({ type }) => type === 'main');
-  const index = pages.findIndex(({ path }) => path === history.location.pathname);
+const mainRoutes = routes
+  .map(({ children }) => children.filter(({ type }) => type === 'main'))
+  .flatMap((route) => route);
+//   .filter((route) => {
+//     console.log('filter', route) ;
+//     return route;
+// })
+
+export default function ButtonNav({ path }) {
   const buttons = [];
+  const navigate = useNavigate();
+  const index = mainRoutes.findIndex(({ path: routePath }) => routePath === path);
   if (index > 0) {
     buttons.push(
-      <Flex key={`${pages[index].id}_back`}>
-        <Button text="Back" size="lg" onClick={() => history.push(pages[index - 1].path)} />
+      <Flex key={`${mainRoutes[index].id}_back`}>
+        <Button text="Back" size="lg" onClick={() => navigate(mainRoutes[index - 1].path)} />
       </Flex>
     );
   }
-  if (index < pages.length - 1) {
+  if (index < mainRoutes.length - 1) {
     buttons.push(
-      <Flex key={`${pages[index].id}_next`} flex="grow" justifyContent="end">
+      <Flex key={`${mainRoutes[index].id}_next`} flex="grow" justifyContent="end">
         <Button
           color="red"
           text="Next"
           size="lg"
-          onClick={() => history.push(pages[index + 1].path)}
+          onClick={() => navigate(mainRoutes[index + 1].path)}
         />
       </Flex>
     );
